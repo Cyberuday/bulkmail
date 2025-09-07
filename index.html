@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bulk Email Sender - Digital Marketing SaaS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Animated gradient background */
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(270deg, #667eea, #764ba2, #ff416c, #ff4b2b);
+      background-size: 800% 800%;
+      animation: gradientShift 15s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glassmorphism container */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 960px;
+      color: white;
+      animation: fadeUp 1s ease-out;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* File input */
+    .file-input {
+      border: 2px dashed rgba(255,255,255,0.6);
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .file-input:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
+    }
+
+    /* CTA button */
+    .btn-send {
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      border: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+      width: 100%;
+    }
+    .btn-send:hover:not(:disabled) {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(255, 65, 108, 0.5);
+    }
+    .btn-send:disabled {
+      background: rgba(255,255,255,0.3);
+      cursor: not-allowed;
+    }
+
+    /* Email cards */
+    .email-list {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+    .email-item {
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 18px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .email-item:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    .email-text { font-weight: 700; word-break: break-word; }
+    .status-text { font-size: 0.9rem; opacity: 0.85; }
+
+    /* Email send button */
+    .send-btn {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      transition: all 0.2s;
+      align-self: flex-start;
+    }
+    .send-btn:hover:not(:disabled) {
+      background: linear-gradient(135deg, #5a67d8, #6b46c1);
+      transform: scale(1.05);
+    }
+    .send-btn:disabled {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* Status messages */
+    .status {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 500;
+    }
+    .success { background: rgba(72,187,120,0.2); border: 1px solid #48bb78; }
+    .error { background: rgba(245,101,101,0.2); border: 1px solid #f56565; }
+
+    /* Toggle */
+    .toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .toggle-btn:hover {
+      background: rgba(255,255,255,0.4);
+    }
+  </style>
+</head>
+<body>
+  <!-- Dark/Light Toggle -->
+  <button class="toggle-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+
+  <div class="glass-card">
+    <h1 class="text-4xl font-extrabold text-center mb-2">🚀 Digital Marketing Email Sender</h1>
+    <p class="text-center text-gray-200 mb-8">Upload your list, craft a subject & message, then send campaigns dynamically.</p>
+
+    <form id="emailForm" class="space-y-6">
+      <div>
+        <label class="block mb-2 font-semibold">📂 Upload Email List (TXT)</label>
+        <div class="file-input" onclick="document.getElementById('fileInput').click()">
+          <input type="file" id="fileInput" accept=".txt" style="display:none">
+          <p id="fileName">No file selected</p>
+        </div>
+      </div>
+
+      <div>
+        <label class="block mb-2 font-semibold">✉️ Subject</label>
+        <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg text-black" placeholder="Campaign Subject">
+      </div>
+
+      <div>
+        <label class="block mb-2 font-semibold">📝 Message</label>
+        <textarea id="message" rows="6" class="w-full px-4 py-3 rounded-lg text-black" placeholder="Write your message..."></textarea>
+      </div>
+
+      <button type="button" class="btn-send" onclick="loadEmails()">Load Emails</button>
+    </form>
+
+    <section id="emailListContainer" style="display:none;">
+      <h3 class="text-xl font-bold mt-6">📧 Emails to Send:</h3>
+      <div id="emailList" class="email-list"></div>
+    </section>
+
+    <div id="statusMessage" class="status"></div>
+  </div>
+
+<script>
+  let emailList = [];
+
+  function loadEmails() {
+    const file = document.getElementById('fileInput').files[0];
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!file || !subject || !message) {
+      showMessage("⚠️ Please add file, subject & message.", "error");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = e => {
+      emailList = e.target.result.split(/\r?\n/).map(e=>e.trim()).filter(e=>/\S+@\S+\.\S+/.test(e));
+      if (!emailList.length) { showMessage("❌ No valid emails.", "error"); return; }
+
+      displayEmailList(subject, message);
+      showMessage(`✅ Loaded ${emailList.length} emails.`, "success");
+      document.getElementById("emailForm").style.display="none";
+      document.getElementById("emailListContainer").style.display="block";
+    };
+    reader.readAsText(file);
+  }
+
+  function displayEmailList(subject, message) {
+    const listDiv = document.getElementById("emailList");
+    listDiv.innerHTML = "";
+    emailList.forEach((email, i) => {
+      const item = document.createElement("div");
+      item.className = "email-item";
+      item.innerHTML = `
+        <span class="email-text">${email}</span>
+        <span id="status-${i}" class="status-text">⏳ Pending</span>
+        <button class="send-btn" id="send-${i}">Send</button>
+      `;
+      listDiv.appendChild(item);
+      document.getElementById(`send-${i}`).addEventListener("click",()=>sendEmail(email,subject,message,i));
+    });
+  }
+
+  function sendEmail(email, subject, message, i) {
+    const mailto = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    const win = window.open(mailto,"_blank");
+    if(!win){ alert("⚠️ Allow popups."); return; }
+    document.getElementById(`status-${i}`).textContent="✅ Sent";
+    document.getElementById(`send-${i}`).disabled=true;
+  }
+
+  function showMessage(msg,type){
+    const div=document.getElementById("statusMessage");
+    div.textContent=msg;
+    div.className=`status ${type}`;
+  }
+
+  document.getElementById("fileInput").addEventListener("change",e=>{
+    document.getElementById("fileName").textContent = e.target.files[0]?.name || "No file selected";
+  });
+
+  // Dark/light mode toggle
+  function toggleTheme(){
+    document.body.classList.toggle("dark-mode");
+    document.querySelector(".toggle-btn").textContent = 
+      document.body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
+    if(document.body.classList.contains("dark-mode")){
+      document.body.style.background="linear-gradient(270deg,#0f0f0f,#1a1a1a,#2d2d2d)";
+    } else {
+      document.body.style.background="linear-gradient(270deg,#667eea,#764ba2,#ff416c,#ff4b2b)";
+    }
+  }
+</script>
+</body>
+</html>
