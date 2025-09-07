@@ -25,32 +25,32 @@ This tool allows digital marketers to upload a TXT file containing email address
 
 🔒 Client-side only (no backend required)</ul>
 
-📸 Preview
+<h2>📸 Preview</h2>
 
-🚀 Getting Started
+<h3>🚀 Getting Started</h3>
 1️⃣ Clone the repo
 git clone https://github.com/your-username/bulk-email-sender.git
 cd bulk-email-sender
 
-2️⃣ Open in browser
+<h3>2️⃣ Open in browser</h3>
 
 Just open index.html in your browser.
 No server setup required.
 
-📂 File Structure
+<h2>📂 File Structure</h2>
 📦 bulk-email-sender
  ┣ 📜 index.html      # Main app
  ┣ 📜 README.md       # Documentation
 
-🛠️ Tech Stack
+<h1>🛠️ Tech Stack</h1>
 
-Frontend: HTML5, CSS3, TailwindCSS, Custom CSS animations
+<h3>Frontend:</h3> HTML5, CSS3, TailwindCSS, Custom CSS animations
 
-Logic: Vanilla JavaScript
+<h3>Logic:</h3> Vanilla JavaScript
 
-UX/UI: Glassmorphism, Animated Gradient Background, Responsive Grid
+<h3>UX/UI:</h3> Glassmorphism, Animated Gradient Background, Responsive Grid
 
-⚙️ How It Works
+<h2>⚙️ How It Works</h2>
 
 Upload a .txt file with email addresses (one per line).
 
@@ -60,21 +60,21 @@ Click Load Emails → Emails are parsed and displayed.
 
 Click Send on any email → Opens your default email client (mailto:).
 
-Status updates to ✅ Sent.
+<h3>Status updates to ✅ Sent.</h3>
 
 📖 Example TXT File
 example1@gmail.com
 example2@yahoo.com
 example3@outlook.com
 
-🌓 Dark / Light Mode
+<h2>🌓 Dark / Light Mode</h2>
 
-🌙 Dark Mode → Minimalist black/gray gradient
+<h3>🌙 Dark Mode → </h3>Minimalist black/gray gradient
 
-☀️ Light Mode → Colorful animated gradient
+☀️<h3> Light Mode →</h3> Colorful animated gradient
 
 Toggle using the top-right button.
 
-📜 License
+<h2>📜 License</h2>
 
 MIT License © 2025 Vertectis
