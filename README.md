@@ -21,7 +21,8 @@
 
   <h2>📸 Preview</h2>
   <div class="preview">
-    <img src="https://via.placeholder.com/900x500.png?text=Bulk+Email+Sender+Preview" alt="Preview">
+   <img width="1280" height="800" alt="Screen Shot 2025-09-07 at 12 52 00 PM" src="https://github.com/user-attachments/assets/e46786a9-9128-4675-8988-db478e1eec0d" />
+
   </div>
 
   <h2>🚀 Getting Started</h2>
