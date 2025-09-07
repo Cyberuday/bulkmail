@@ -1,7 +1,7 @@
 <h1>📧 Bulk Email Sender - Digital Marketing SaaS</h1>
 
-<h4>A responsive, glassmorphism-themed Bulk Email Sender built with HTML, CSS (Tailwind + custom styles), and JavaScript.
-This tool allows digital marketers to upload a TXT file containing email addresses, add a subject and message, and send personalized campaigns directly via the client’s mail app (mailto:).</h4>
+<p>A responsive, glassmorphism-themed Bulk Email Sender built with HTML, CSS (Tailwind + custom styles), and JavaScript.
+This tool allows digital marketers to upload a TXT file containing email addresses, add a subject and message, and send personalized campaigns directly via the client’s mail app (mailto:).</p>
 
 <h2>✨ Features</h2>
 
